@@ -1,0 +1,15 @@
+# Render deployment configuration for EnvisionStudio (Single Service)
+services:
+  - type: web
+    name: envision-studio
+    runtime: node
+    plan: free
+    buildCommand: npm --prefix client install && npm --prefix server install && npm run build:all
+    startCommand: npm run start:server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
